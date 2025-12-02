@@ -7,14 +7,11 @@
             margin: 0;
             padding: 0;
             font-family: Arial, sans-serif;
-
-            /* Background image */
             background-image: url("bg.png");
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
             background-attachment: fixed;
-
             height: 100vh;
             display: flex;
             justify-content: center;
@@ -22,7 +19,6 @@
             cursor: default;
         }
 
-        /* Invisible button styling */
         #invisible-btn {
             position: absolute;
             transform: translate(5px, 132px);
@@ -98,6 +94,9 @@
     async function playIntro() {
       if (hasPlayed) return;
       hasPlayed = true;
+
+      // 🔥 Clear any old queued speech (IMPORTANT FIX)
+      speechSynthesis.cancel();
 
       const voices = await getVoices();
       const preferred = ["Microsoft Aria", "Microsoft Zira", "Microsoft Guy", "Microsoft Jenny"];
