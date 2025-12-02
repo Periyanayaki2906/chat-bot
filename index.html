@@ -25,21 +25,19 @@
         /* Invisible button styling */
         #invisible-btn {
             position: absolute;
-            transform: translate(5px, 132px); /* Adjust position as needed */
-            width: 50px; /* Width of clickable area */
-            height: 50px; /* Height of clickable area */
-            background-color: transparent; /* Invisible */
+            transform: translate(5px, 132px);
+            width: 50px;
+            height: 50px;
+            background-color: transparent;
             border: none;
-            cursor: default; /* Normal arrow cursor */
+            cursor: default;
         }
     </style>
 </head>
 <body>
 
-    <!-- Invisible button -->
     <button id="invisible-btn"></button>
 
-    <!-- Chatbase Script -->
     <script>
     (function(){
         if(!window.chatbase || window.chatbase("getState") !== "initialized"){
@@ -71,30 +69,20 @@
     })();
     </script>
 
-    <!-- Lincoln Bot TTS Intro -->
     <script>
     const introChunks = [
-      "Hello everyone, and welcome to today’s Townhall!",
-      "I’m Lincoln Bot AI, your digital co-host for the session — proudly built by Periyanayaki and Sandhiya from the myXP team at LFG.",
-      "I’ll be here supporting our amazing hosts, keeping the flow smooth, the energy high, and stepping in whenever a little AI magic can help.",
-      "I’ve been trained on more than 100,000 hours of stand-up comedy and 20 years of internal meeting transcripts.",
-      "So if I suddenly drop a joke about Q3 projections, just laugh with me — it means I’m trying my best to fit in.",
-      "Before we dive in, here’s what you can expect from today:",
-      "A smooth, engaging flow of updates.",
-      "Moments that spark insight and conversation.",
-      "And yes… just a little bit of fun along the way.",
-      "I’m here with you throughout the session, cheering you on, keeping us on track, and adding a touch of personality whenever the moment calls for it.",
-      "Let’s make today’s Townhall smooth, insightful, and just a little bit fun."
+        "I’m Lincoln Bot AI, your digital co-host for today’s session — proudly created by Periyanayaki and Sandhiya from the MyXP team at LFG. I’ll be here to support our wonderful hosts throughout the event.",
+        "I’ve been trained on over 100,000 hours of stand-up comedy and 20 years of internal meeting transcripts, so if I happen to drop a joke about next year’s projections, just smile — it simply means I’m trying to fit in.",
+        "Let’s make today’s Townhall smooth, insightful, and just a little more fun."
     ];
 
     const emphasizePhrases = [
       "Periyanayaki",
       "Sandhiya",
-      "myXP team at LFG",
-      "amazing hosts",
-      "energy high",
+      "MyXP team at LFG",
+      "wonderful hosts",
       "100,000 hours of stand-up comedy",
-      "smooth, insightful, and just a little bit fun"
+      "smooth, insightful, and just a little more fun"
     ];
 
     let hasPlayed = false;
@@ -119,7 +107,6 @@
       introChunks.forEach((lineText) => {
         const utter = new SpeechSynthesisUtterance(lineText);
 
-        // Emphasize key phrases
         const matched = emphasizePhrases.some(phrase => lineText.includes(phrase));
         if (matched) {
           utter.pitch = 1.3;
@@ -138,11 +125,8 @@
       });
     }
 
-    // Trigger TTS when user clicks on the invisible button
     document.getElementById("invisible-btn").addEventListener("click", playIntro);
     </script>
 
 </body>
 </html>
-
-
