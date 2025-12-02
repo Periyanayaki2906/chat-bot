@@ -1,131 +1,52 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html>
 <head>
-    <title>Lincoln Chatbot</title>
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: Arial, sans-serif;
-            background-image: url("bg.png");
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            cursor: default;
-        }
+<title>Lincoln Chatbot</title>
+<style>
 
-        #invisible-btn {
-            position: absolute;
-            transform: translate(5px, 132px);
-            width: 50px;
-            height: 50px;
-            background-color: transparent;
-            border: none;
-            cursor: default;
+        body {
+
+            margin: 0;
+
+            padding: 0;
+
+            font-family: Arial, sans-serif;
+ 
+            /* 🔥 Use your background image */
+
+            background-image: url("bg.png");
+
+            background-size: cover;
+
+            background-position: center;
+
+            background-repeat: no-repeat;
+
+            background-attachment: fixed;
+ 
+            height: 100vh;
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            text-align: center;
+
         }
-    </style>
+</style>
 </head>
 <body>
-
-    <button id="invisible-btn"></button>
-
-    <script>
-    (function(){
-        if(!window.chatbase || window.chatbase("getState") !== "initialized"){
-            window.chatbase = (...args) => {
-                if(!window.chatbase.q) window.chatbase.q = [];
-                window.chatbase.q.push(args);
-            };
-            window.chatbase = new Proxy(window.chatbase, {
-                get(target, prop){
-                    if(prop === "q") return target.q;
-                    return (...args) => target(prop, ...args);
-                }
-            });
-        }
-
-        const onLoad = function(){
-            const script = document.createElement("script");
-            script.src = "https://www.chatbase.co/embed.min.js";
-            script.id = "4_7zqplmOYUuVm5yQH5Bx";
-            script.domain = "www.chatbase.co";
-            document.body.appendChild(script);
-        };
-
-        if(document.readyState === "complete"){
-            onLoad();
-        } else {
-            window.addEventListener("load", onLoad);
-        }
-    })();
-    </script>
-
-    <script>
-    const introChunks = [
-        "I’m Lincoln Bot AI, your digital co-host for today’s session — proudly created by Periyanayaki and Sandhiya from the MyXP team at LFG. I’ll be here to support our wonderful hosts throughout the event.",
-        "I’ve been trained on over 100,000 hours of stand-up comedy and 20 years of internal meeting transcripts, so if I happen to drop a joke about next year’s projections, just smile — it simply means I’m trying to fit in.",
-        "Let’s make today’s Townhall smooth, insightful, and just a little more fun."
-    ];
-
-    const emphasizePhrases = [
-      "Periyanayaki",
-      "Sandhiya",
-      "MyXP team at LFG",
-      "wonderful hosts",
-      "100,000 hours of stand-up comedy",
-      "smooth, insightful, and just a little more fun"
-    ];
-
-    let hasPlayed = false;
-
-    async function getVoices() {
-      return new Promise(resolve => {
-        let voices = speechSynthesis.getVoices();
-        if (voices.length) resolve(voices);
-        else speechSynthesis.onvoiceschanged = () => resolve(speechSynthesis.getVoices());
-      });
-    }
-
-    async function playIntro() {
-      if (hasPlayed) return;
-      hasPlayed = true;
-
-      // 🔥 Clear any old queued speech (IMPORTANT FIX)
-      speechSynthesis.cancel();
-
-      const voices = await getVoices();
-      const preferred = ["Microsoft Aria", "Microsoft Zira", "Microsoft Guy", "Microsoft Jenny"];
-      const selectedVoice = voices.find(v => preferred.some(name => v.name.includes(name))) || voices[0];
-      if (!selectedVoice) return;
-
-      introChunks.forEach((lineText) => {
-        const utter = new SpeechSynthesisUtterance(lineText);
-
-        const matched = emphasizePhrases.some(phrase => lineText.includes(phrase));
-        if (matched) {
-          utter.pitch = 1.3;
-          utter.rate = 1.25;
-          utter.volume = 1.1;
-        } else {
-          utter.pitch = 1.1 + Math.random() * 0.05;
-          utter.rate = 1.15 + Math.random() * 0.05;
-          utter.volume = 1;
-        }
-
-        utter.voice = selectedVoice;
-        utter.lang = "en-US";
-
-        speechSynthesis.speak(utter);
-      });
-    }
-
-    document.getElementById("invisible-btn").addEventListener("click", playIntro);
-    </script>
-
+ 
+    <!-- No text here since your image already contains the welcome words -->
+ 
+    <!-- Chatbase Script -->
+<script>
+(function(){if(!window.chatbase||window.chatbase("getState")!=="initialized"){window.chatbase=(...arguments)=>{if(!window.chatbase.q){window.chatbase.q=[]}window.chatbase.q.push(arguments)};window.chatbase=new Proxy(window.chatbase,{get(target,prop){if(prop==="q"){return target.q}return(...args)=>target(prop,...args)}})}const onLoad=function(){const script=document.createElement("script");script.src="https://www.chatbase.co/embed.min.js";script.id="4_7zqplmOYUuVm5yQH5Bx";script.domain="www.chatbase.co";document.body.appendChild(script)};if(document.readyState==="complete"){onLoad()}else{window.addEventListener("load",onLoad)}})();
+</script>
+ 
 </body>
 </html>
+
+ 
